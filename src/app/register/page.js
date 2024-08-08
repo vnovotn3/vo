@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Input from "@/components/input";
-import NavBar from "@/components/navBar";
-import Modal from "@/components/modal";
-import Button from "@/components/button";
-import { validateEmail } from "@/utils/validators";
+import Input from "@/modules/ui/Input";
+import NavBar from "@/modules/ui//NavBar";
+import Modal from "@/modules/ui/Modal";
+import Button from "@/modules/ui/Button";
+import { validateEmail } from "@/modules/utils/validators";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -29,6 +29,22 @@ export default function RegisterPage() {
   }, [email, password, password2]);
 
   const redirectToLogin = useCallback(() => router.push("/login"), [router]);
+
+  const rightLinks = useMemo(
+    () => [
+      {
+        label: "Registrace",
+        type: "border",
+        onClick: () => router.push("/register"),
+      },
+      {
+        label: "Log in",
+        type: "primary",
+        onClick: () => router.push("/login"),
+      },
+    ],
+    [router]
+  );
 
   const handleModalButtonPress = useCallback(() => {
     if (isSuccess) redirectToLogin();
@@ -65,7 +81,7 @@ export default function RegisterPage() {
       setPasswordValid(false);
       setPassword2Valid(false);
     } else {
-      fetch("/api/register", {
+      fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +126,7 @@ export default function RegisterPage() {
         onButtonPress={handleModalButtonPress}
       />
       <div className="flex flex-1 flex-col min-h-full">
-        <NavBar />
+        <NavBar rightLinks={rightLinks} />
         <div className="flex flex-1">
           <div className="flex flex-1 flex-col px-6 pt-28 pb-20 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">

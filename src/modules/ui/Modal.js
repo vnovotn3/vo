@@ -13,6 +13,8 @@ export default function Modal({
   setOpen,
   button,
   onButtonPress,
+  hasCancelButton,
+  onCancel,
 }) {
   return (
     <Transition show={open}>
@@ -53,7 +55,7 @@ export default function Modal({
                           {message}
                         </p>
                       </div>
-                      <div className="flex flex-row justify-center">
+                      <div className="flex flex-row justify-center space-x-4">
                         <button
                           onClick={() => {
                             setOpen(false);
@@ -63,6 +65,17 @@ export default function Modal({
                         >
                           {button ?? "Zavřít"}
                         </button>
+                        {hasCancelButton && (
+                          <button
+                            onClick={() => {
+                              setOpen(false);
+                              onCancel?.();
+                            }}
+                            className="mt-6 rounded-md px-3 py-1.5 text-sm leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-white hover:bg-gray-100 text-gray-800 font-semibold border border-gray-300 shadow"
+                          >
+                            {"Zrušit"}
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>

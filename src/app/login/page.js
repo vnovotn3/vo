@@ -1,11 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Input from "@/components/input";
-import NavBar from "@/components/navBar";
-import Modal from "@/components/modal";
-import Button from "@/components/button";
+import Input from "@/modules/ui/Input";
+import NavBar from "@/modules/ui//NavBar";
+import Modal from "@/modules/ui/Modal";
+import Button from "@/modules/ui/Button";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -27,6 +27,22 @@ export default function LoginPage() {
     [router]
   );
 
+  const rightLinks = useMemo(
+    () => [
+      {
+        label: "Registrace",
+        type: "border",
+        onClick: () => router.push("/register"),
+      },
+      {
+        label: "Log in",
+        type: "primary",
+        onClick: () => router.push("/login"),
+      },
+    ],
+    [router]
+  );
+
   const submit = useCallback(() => {
     if (email === "") {
       setModalTitle("Vyplňte email");
@@ -39,7 +55,7 @@ export default function LoginPage() {
       setModalOpen(true);
       setPasswordValid(false);
     } else {
-      fetch("/api/login", {
+      fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,11 +66,11 @@ export default function LoginPage() {
         }),
       }).then(async (res) => {
         if (res.ok) {
-          //TODO
-          console.log("login success");
+          router.push("/admin");
         } else {
+          const errorMessage = (await res.json()).error;
           setModalTitle("Došlo k chybě");
-          if ((await res.json()).error.includes("invalid-credential"))
+          if (errorMessage.includes("invalid-credential"))
             setModalMessage("Zadali jste špatnou e-mailovou adresu nebo heslo");
           else setModalMessage("Zkuste se přihlásit znovu");
           setModalOpen(true);
@@ -75,7 +91,7 @@ export default function LoginPage() {
         button="Zkusit znovu"
       />
       <div className="flex flex-1 flex-col min-h-full">
-        <NavBar />
+        <NavBar rightLinks={rightLinks} />
         <div className="flex flex-1">
           <div className="flex flex-1 flex-col px-6 pt-28 pb-20 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">

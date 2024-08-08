@@ -1,13 +1,7 @@
-const firebase = require("firebase/app");
-const admin = require("firebase-admin");
-const {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  sendEmailVerification,
-  sendPasswordResetEmail,
-} = require("firebase/auth");
+import admin from "firebase-admin";
+import { initializeApp, getApps } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const serviceAccount = {
   type: "service_account",
@@ -39,14 +33,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-if (firebase.getApps().length === 0) firebase.initializeApp(firebaseConfig);
-
-module.exports = {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  sendEmailVerification,
-  sendPasswordResetEmail,
-  admin,
-};
+const firebaseApp = !getApps().length
+  ? initializeApp(firebaseConfig)
+  : getApps()[0];
+export const auth = getAuth(firebaseApp);
+export const adminAuth = admin.auth();
+export const db = getFirestore(firebaseApp);

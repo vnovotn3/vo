@@ -1,12 +1,31 @@
 "use client";
 
-import NavBar from "@/components/navBar";
+import { useMemo } from "react";
+import NavBar from "@/modules/ui/NavBar";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const router = useRouter();
+  const rightLinks = useMemo(
+    () => [
+      {
+        label: "Registrace",
+        type: "border",
+        onClick: () => router.push("/register"),
+      },
+      {
+        label: "Log in",
+        type: "primary",
+        onClick: () => router.push("/login"),
+      },
+    ],
+    [router]
+  );
+
   return (
     <>
       <div className="flex flex-1 flex-col min-h-full">
-        <NavBar />
+        <NavBar rightLinks={rightLinks} />
         <div className="flex flex-1">
           <div className="flex flex-1 flex-col px-6 pt-28 pb-20 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">

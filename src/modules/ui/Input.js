@@ -1,6 +1,6 @@
 "use client";
 
-export default function Input({ isValid, ...props }) {
+export default function Input({ isValid = true, ...props }) {
   return (
     <input
       autoComplete={props.type == "password" ? "current-password" : props.type}
