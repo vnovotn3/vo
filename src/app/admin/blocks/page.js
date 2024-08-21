@@ -16,7 +16,9 @@ import Icon from "@/modules/ui/Icon";
 import Loading from "@/modules/ui/Loading";
 import { convertToBase64 } from "@/modules/utils/convertors";
 
-export default function Blocks({}) {
+import AdminLayout from "../AdminLayout";
+
+export default function BlocksPage({}) {
 	const [selectedBlock, setSelectedBlock] = useState(0);
 	const [block, setBlock] = useState();
 	const [loading, setLoading] = useState(false);
@@ -106,7 +108,7 @@ export default function Blocks({}) {
 	}, [blocks]);
 
 	return (
-		<>
+		<AdminLayout>
 			<Loading loading={loading} />
 			<Modal
 				title={modalTitle}
@@ -352,6 +354,6 @@ export default function Blocks({}) {
 					</div>
 				</div>
 			</div>
-		</>
+		</AdminLayout>
 	);
 }

@@ -1,7 +1,7 @@
-import "../globals.css";
+import "../../globals.css";
 
 export const metadata = {
-	title: "Výzkum Odolnosti | Admin",
+	title: "Výzkum Odolnosti | Uživatelé",
 	description: "Výzkum Odolnosti",
 };
 
