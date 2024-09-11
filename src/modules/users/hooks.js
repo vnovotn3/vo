@@ -2,12 +2,21 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-const getUsers = () =>
+export const getUsers = () =>
 	fetch("/api/users", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
 		},
+	});
+
+export const getUser = (email) =>
+	getUsers().then(async (res) => {
+		if (res.ok) {
+			const json = await res.json();
+			return json.users.filter((u) => u.email === email)[0];
+		}
+		return undefined;
 	});
 
 export const saveUser = (id, data) =>

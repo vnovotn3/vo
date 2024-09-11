@@ -7,6 +7,7 @@ import NavBar from "@/modules/ui//NavBar";
 import Modal from "@/modules/ui/Modal";
 import Button from "@/modules/ui/Button";
 import Loading from "@/modules/ui/Loading";
+import { getUser, getUsers } from "@/modules/users/hooks";
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
@@ -70,7 +71,9 @@ export default function LoginPage() {
 			}).then(async (res) => {
 				setLoading(false);
 				if (res.ok) {
-					router.push("/admin");
+					const user = await getUser(email);
+					if (user.role === "admin") return router.push("/admin");
+					return router.push("/user");
 				} else {
 					const errorMessage = (await res.json()).error;
 					setModalTitle("Došlo k chybě");

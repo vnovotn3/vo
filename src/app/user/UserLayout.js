@@ -6,36 +6,19 @@ import { useRouter, usePathname } from "next/navigation";
 import NavBar from "@/modules/ui//NavBar";
 import { useAuth, useLogOut } from "@/modules/auth/hooks";
 
-export default function AdminLayout({ children }) {
-	const user = useAuth("admin");
+export default function UserLayout({ children }) {
+	const user = useAuth();
 	const logOut = useLogOut();
 	const router = useRouter();
 	const pathname = usePathname();
 
-	const centerLinks = useMemo(
-		() => [
-			{
-				label: "Bloky a emaily",
-				type: "simple",
-				onClick: () => router.push(`/admin/blocks`),
-				isActive: pathname === "/admin/blocks",
-			},
-			{
-				label: "Uživatelé",
-				type: "simple",
-				onClick: () => router.push(`/admin/users`),
-				isActive: pathname === "/admin/users",
-			},
-		],
-		[router, pathname]
-	);
 	const rightLinks = useMemo(
 		() => [
 			{
 				label: "Můj účet",
 				type: "simple",
-				onClick: () => router.push(`/admin/account`),
-				isActive: pathname === "/admin/account",
+				onClick: () => router.push(`/user/account`),
+				isActive: pathname === "/user/account",
 			},
 			{
 				label: "Log out",
@@ -51,12 +34,7 @@ export default function AdminLayout({ children }) {
 	return (
 		<>
 			<div className="flex flex-1 flex-col min-h-full">
-				<NavBar
-					homePath="/admin"
-					title="Admin"
-					rightLinks={rightLinks}
-					centerLinks={centerLinks}
-				/>
+				<NavBar homePath="/user" rightLinks={rightLinks} />
 				<div className="flex flex-1">
 					<div className="flex flex-1 flex-col px-6 pt-6 pb-20 lg:px-8">
 						<div className="mx-auto flex max-w-7xl p-4 lg:px-8 w-full">

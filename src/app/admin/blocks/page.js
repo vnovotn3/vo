@@ -34,6 +34,11 @@ export default function BlocksPage({}) {
 		}
 	}, [blocks, selectedBlock]);
 
+	const navigateToUser = useCallback(
+		() => window.open("/user", "_blank", "noopener,noreferrer"),
+		[]
+	);
+
 	const handleFileChange = async (event) => {
 		const file = event.target.files[0];
 		if (file) {
@@ -261,10 +266,10 @@ export default function BlocksPage({}) {
 													)}
 													{!block?.img && (
 														<>
-															<div className="mt-4 flex text-sm leading-6 text-gray-600">
+															<div className="mt-4 flex text-sm leading-6 text-gray-600 justify-center">
 																<label
 																	htmlFor="file-upload"
-																	className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+																	className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2  focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
 																>
 																	<span>Nahrajte obrázek</span>
 																	<input
@@ -275,7 +280,6 @@ export default function BlocksPage({}) {
 																		onChange={handleFileChange}
 																	/>
 																</label>
-																<p className="pl-1">nebo drag and drop</p>
 															</div>
 															<p className="text-xs leading-5 text-gray-600">
 																PNG, JPG, GIF do 10MB
@@ -295,6 +299,7 @@ export default function BlocksPage({}) {
 											</label>
 											<div className="mt-2">
 												<Editor
+													height={800}
 													value={block?.content || ""}
 													onEditorChange={(content) =>
 														setBlock({ ...block, content })
@@ -305,7 +310,7 @@ export default function BlocksPage({}) {
 									</div>
 								</div>
 
-								<div className="border-b border-gray-900/10 pb-12">
+								<div className="border-b border-gray-900/10 pb-12 pt-8">
 									<h2 className="text-base font-semibold leading-7 text-gray-900">
 										Nastavení e-mailové zprávy
 									</h2>
@@ -343,7 +348,12 @@ export default function BlocksPage({}) {
 						</div>
 						<div className="flex items-center space-x-4">
 							{block?.id !== "REGISTER_EMAIL" && (
-								<Button label="Zobrazit blok" type="border" icon="link" />
+								<Button
+									label="Zobrazit bloky"
+									type="border"
+									icon="link"
+									onClick={navigateToUser}
+								/>
 							)}
 							<Button
 								label="Uložit změny"

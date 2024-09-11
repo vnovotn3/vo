@@ -71,8 +71,8 @@ export default function UsersPage({}) {
 			<div className="md:flex flex-col md:flex-row w-full space-y-6 md:space-y-0 space-x-0 md:space-x-6">
 				<div className="flex flex-col w-full text-gray-700 bg-white flex-shrink-0 border rounded-md">
 					<div className="relative overflow-x-auto shadow-md sm:rounded-lg overflow-x-auto">
-						<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 whitespace-nowrap">
-							<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+						<table className="w-full text-sm text-left rtl:text-right text-gray-500 whitespace-nowrap">
+							<thead className="text-xs text-gray-700 uppercase bg-gray-50">
 								<tr>
 									<th scope="col" className="px-6 py-3 w-36">
 										ID uživatele
@@ -97,13 +97,13 @@ export default function UsersPage({}) {
 							<tbody>
 								{users.map((user, index) => (
 									<tr
-										className="hover:cursor-pointer bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+										className="hover:cursor-pointer bg-white border-b hover:bg-gray-50"
 										key={`row-${index}`}
 										onClick={() => navigateToUser(user.code)}
 									>
 										<th
 											scope="row"
-											className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+											className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
 										>
 											{user.code}
 										</th>
