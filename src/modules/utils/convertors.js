@@ -27,10 +27,16 @@ export const transformHTML = (node) => {
 				node.attribs.class = "text-2xl font-bold mb-4"; // Tailwind classes for <h1>
 				break;
 			case "h2":
-				node.attribs.class = "text-xl font-semibold mb-4"; // Tailwind classes for <h2>
+				node.attribs.class = "text-xl font-semibold my-4";
+				break;
+			case "h3":
+				node.attribs.class = "text-lg font-semibold my-4"; // Tailwind classes for <h2>
+				break;
+			case "h4":
+				node.attribs.class = "text-base font-semibold my-4"; // Tailwind classes for <h2>
 				break;
 			case "p":
-				node.attribs.class = "text-base text-gray-700 mb-3 inline-block"; // Tailwind classes for <p>
+				node.attribs.class = "text-base text-gray-700 mb-3 inline-block w-full"; // Tailwind classes for <p>
 				break;
 			case "li":
 				node.attribs.class = "text-base text-gray-600 last:mb-4"; // Style list items
@@ -51,8 +57,6 @@ export const transformHTML = (node) => {
 			case "iframe":
 				return (
 					<div className="relative overflow-hidden pb-[56.25%]">
-						{" "}
-						{/* 16:9 aspect ratio */}
 						<iframe
 							{...node.attribs}
 							className="absolute top-0 left-0 w-full h-full"

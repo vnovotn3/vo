@@ -21,7 +21,7 @@ export default function UserLayout({ children }) {
 				isActive: pathname === "/user/account",
 			},
 			{
-				label: "Log out",
+				label: "Odhlásit se",
 				type: "primary",
 				onClick: () => logOut(),
 			},

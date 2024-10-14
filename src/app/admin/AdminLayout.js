@@ -38,7 +38,7 @@ export default function AdminLayout({ children }) {
 				isActive: pathname === "/admin/account",
 			},
 			{
-				label: "Log out",
+				label: "Odhlásit se",
 				type: "primary",
 				onClick: () => logOut(),
 			},

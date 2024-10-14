@@ -5,19 +5,31 @@ import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Button from "./Button";
 
-export default function NavBar({ homePath, title, centerLinks, rightLinks }) {
+export default function NavBar({
+	homePath,
+	title,
+	centerLinks,
+	rightLinks,
+	isTransparent,
+}) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	return (
-		<header className="bg-white border-b border-gray-200">
+		<header
+			className={`${isTransparent ? "" : "border-b border-gray-200 bg-white"}`}
+		>
 			<nav
 				className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8"
 				aria-label="Global"
 			>
 				<div className="flex lg:flex-1">
 					<a href={homePath ?? "/"} className="-m-1.5 p-1.5">
-						<h2 className="text-xl font-bold leading-9 tracking-tight text-gray-900">
-							Výzkum Odolnosti
+						<h2
+							className={`text-xl font-bold leading-9 tracking-tight ${
+								isTransparent ? "text-white" : "text-gray-900"
+							}`}
+						>
+							INDOMITABLE SOLDIER
 							<span className="font-normal">
 								{title ? `\u00A0\u00A0|\u00A0\u00A0${title}` : ""}
 							</span>

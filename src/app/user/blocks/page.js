@@ -3,15 +3,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 
-import Editor from "@/modules/ui/Editor";
-import Input from "@/modules/ui/Input";
 import Button from "@/modules/ui/Button";
-import { useBlocks, saveBlock, deleteBlock } from "@/modules/blocks/hooks";
+import { useBlocks } from "@/modules/blocks/hooks";
 import Modal from "@/modules/ui/Modal";
 import Icon from "@/modules/ui/Icon";
 import Loading from "@/modules/ui/Loading";
 import {
-	convertToBase64,
 	formatDate,
 	parseDate,
 	transformHTML,
@@ -33,7 +30,7 @@ export function Rating({ rating, setRating }) {
 			array.push(
 				<svg
 					key={`star-${i}`}
-					class={`w-4 h-4 me-1 ${
+					className={`w-4 h-4 me-1 ${
 						rating > i ? "text-indigo-600" : "text-gray-300"
 					} hover:opacity-50 hover:cursor-pointer`}
 					aria-hidden="true"
@@ -50,7 +47,7 @@ export function Rating({ rating, setRating }) {
 		return array;
 	}, [rating]);
 
-	return <div class="flex items-center pt-2">{stars}</div>;
+	return <div className="flex items-center pt-2">{stars}</div>;
 }
 
 export default function BlocksPage({}) {

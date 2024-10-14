@@ -3,19 +3,100 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+	color: rgb(var(--foreground-rgb));
+}
+* {
+	scroll-behavior: smooth;
+}
+
+.hero {
+	background: linear-gradient(rgba(0, 49, 84, 0) 50%, #002d4e),
+		url("/hero.jpg") center/cover;
+}
+.text .title {
+	width: 45rem;
+	aspect-ratio: 3;
+	background: url("/hero-title.png") no-repeat;
+	background-size: contain;
+}
+
+@media (max-width: 1200px) {
+	.text .title {
+		max-width: 90%;
+	}
+}
+
+.text p {
+	color: white;
+	font-size: 1.2rem;
+	max-width: 50rem;
+}
+
+.btn {
+	display: inline-block;
+	padding: 1rem 1.5rem;
+	font-size: 1rem;
+	border-radius: 4px;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+
+.btn.outlined {
+	color: white;
+	border: 1px solid white;
+}
+.btn.yellow {
+	background-color: #f7a901;
+	color: #002d4e;
+}
+.btn:hover {
+	opacity: 0.8;
+}
+
+.blue-section {
+	background-color: #002d4e;
+	color: white;
+}
+.yellow-section {
+	background-color: #f7a901;
+	color: #002d4e;
+}
+.footer-section {
+	background: url("/footer.jpg") center/cover;
+	color: white;
+}
+.section {
+	padding-top: 6rem;
+	padding-bottom: 3rem;
+}
+.section section {
+	padding-bottom: 3rem;
+}
+.section h2 {
+	font-size: 2rem;
+	font-weight: 800;
+	padding-bottom: 1.5rem;
+}
+.section p {
+	font-weight: 200;
+	margin-bottom: 1rem;
+	font-size: 1.2rem;
+	max-width: 60rem;
+}
+.yellow-section p {
+	font-weight: 300;
 }

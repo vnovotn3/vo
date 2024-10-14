@@ -18,8 +18,12 @@ export default function Button({
 			} flex flex-row justify-center content-center space-x-2 px-3 py-1.5 text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-md ${
 				type === "primary"
 					? "text-white shadow-sm bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600"
+					: type === "white"
+					? "text-indigo-600 bg-white hover:opacity-80"
 					: type === "border"
 					? "bg-white shadow-sm hover:bg-gray-100 text-gray-800 border border-gray-300 shadow"
+					: type === "border-white"
+					? "text-white hover:opacity-80 border border-white"
 					: type === "simple"
 					? `${
 							isActive ? "bg-gray-100" : "bg-white"
@@ -44,7 +48,7 @@ export default function Button({
 					/>
 				</svg>
 			)}
-			<span>{label}</span>
+			<span style={{ paddingTop: "1px" }}>{label}</span>
 			{icon && (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

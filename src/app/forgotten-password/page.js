@@ -32,7 +32,7 @@ export default function ForgottenPasswordPage() {
 				onClick: () => router.push("/register"),
 			},
 			{
-				label: "Log in",
+				label: "Přihlášení",
 				type: "primary",
 				onClick: () => router.push("/login"),
 			},
