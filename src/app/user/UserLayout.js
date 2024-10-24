@@ -36,7 +36,7 @@ export default function UserLayout({ children }) {
 			<div className="flex flex-1 flex-col min-h-full">
 				<NavBar homePath="/user" rightLinks={rightLinks} />
 				<div className="flex flex-1">
-					<div className="flex flex-1 flex-col px-6 pt-6 pb-20 lg:px-8">
+					<div className="flex flex-1 flex-col px-0 pt-0 lg:pt-6 pb-20 lg:px-8">
 						<div className="mx-auto flex max-w-7xl p-4 lg:px-8 w-full">
 							{children}
 						</div>

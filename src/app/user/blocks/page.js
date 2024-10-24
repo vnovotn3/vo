@@ -206,7 +206,7 @@ export default function BlocksPage({}) {
 											? "checked"
 											: "bell"
 									}
-									style={{ width: "24px", height: "24px" }}
+									style={{ width: "24px", height: "24px", flexShrink: 0 }}
 								/>
 								<div>
 									<p className="font-semibold text-sm">{block.name}</p>
@@ -224,7 +224,7 @@ export default function BlocksPage({}) {
 						<img
 							src={block.img}
 							alt="Banner"
-							className="w-full h-96 object-cover opacity-70 mb-12"
+							className="w-full h-96 object-cover mb-12"
 						/>
 					)}
 					<div className="space-y-12">

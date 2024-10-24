@@ -49,7 +49,7 @@ export default function BlocksPage({}) {
 
 	const deleteImg = useCallback(() => {
 		setBlock({ ...block, img: "" });
-	}, []);
+	}, [block]);
 
 	const saveChanges = useCallback(() => {
 		setLoading(true);
@@ -126,7 +126,7 @@ export default function BlocksPage({}) {
 				onCancel={useCallback(() => setIsDelModal(false), [])}
 			/>
 			<div className="md:flex flex-col md:flex-row w-full space-y-6 md:space-y-0 space-x-0 md:space-x-6">
-				<div className="flex flex-col w-full md:w-64 text-gray-700 bg-white flex-shrink-0 border rounded-md">
+				<div className="flex flex-col w-full md:w-80 text-gray-700 bg-white flex-shrink-0 border rounded-md">
 					<nav className="flex-grow md:block p-4">
 						{blocks
 							.sort((a, b) => a.position - b.position)
@@ -141,7 +141,7 @@ export default function BlocksPage({}) {
 								>
 									<Icon
 										name={block.id === "REGISTER_EMAIL" ? "envelope" : "flag"}
-										style={{ width: "20px", height: "20px" }}
+										style={{ width: "20px", height: "20px", flexShrink: 0 }}
 									/>
 									{block.name}
 								</a>
