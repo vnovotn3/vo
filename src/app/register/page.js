@@ -9,6 +9,7 @@ import Button from "@/modules/ui/Button";
 import { validateEmail } from "@/modules/utils/validators";
 import Loading from "@/modules/ui/Loading";
 import { createUser } from "@/modules/users/hooks";
+import { sendConfirmRegistration } from "@/modules/send/hooks";
 
 export default function RegisterPage() {
 	const [email, setEmail] = useState("");
@@ -97,12 +98,13 @@ export default function RegisterPage() {
 			}).then(async (res) => {
 				setLoading(false);
 				if (res.ok) {
-					createUser(email);
+					await createUser(email);
+					sendConfirmRegistration(email);
 
 					setIsSuccess(true);
 					setModalTitle("Registrace dokončena");
 					setModalMessage(
-						"Na vaši e-mailovou adresu jsme vám zaslali odkaz pro ověření registrace"
+						"Na vaši e-mailovou adresu jsme vám zaslali potvrzení registrace"
 					);
 					setModalButton("Přihlásit se");
 					setModalOpen(true);
