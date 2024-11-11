@@ -53,5 +53,13 @@ export async function GET(req) {
 		});
 	});
 
-	return Response.json({ openBlocksToday }, { status: 200 });
+	return Response.json(
+		{
+			openBlocksToday: openBlocksToday.map((data) => ({
+				user: data.user.email,
+				block: data.block.name,
+			})),
+		},
+		{ status: 200 }
+	);
 }
