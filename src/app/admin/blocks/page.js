@@ -315,8 +315,7 @@ export default function BlocksPage({}) {
 										Nastavení e-mailové zprávy
 									</h2>
 									<p className="mt-1 text-sm leading-6 text-gray-600">
-										V šabloně zprávy můžete použít následující kódy:{" "}
-										<b>{"{{user_id}}"}</b>, <b>{"{{block_link}}"}</b>
+										V šabloně zprávy můžete použít kód <b>{"{{user_id}}"}</b>
 									</p>
 
 									<div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

@@ -15,6 +15,7 @@ import Button from "@/modules/ui/Button";
 import Select from "@/modules/ui/Select";
 import Snack from "@/modules/ui/Snack";
 import CheckBox from "@/modules/ui/CheckBox";
+import { fetchApi } from "@/modules/utils/fetch";
 
 import AdminLayout from "../../AdminLayout";
 
@@ -41,13 +42,23 @@ export default function UserPage({ params }) {
 	);
 
 	const updateForceOpen = useCallback(
-		(blockId, infoId, checked) => {
-			if (infoId) {
-				saveBlockUser(infoId, { force_open: checked }).then(refetchBlocksUsers);
+		(block, checked) => {
+			//send email
+			if (checked)
+				fetchApi("/api/send", "POST", {
+					email: user.email,
+					subject: `Otevřena nová metoda: ${block.name}`,
+					html: block.email_content.replace("{{user_id}}", user.code),
+				});
+
+			if (block.infoId) {
+				saveBlockUser(block.infoId, { force_open: checked }).then(
+					refetchBlocksUsers
+				);
 			} else {
 				createBlockUser({
 					user_id: user.id,
-					block_id: blockId,
+					block_id: block.id,
 					force_open: checked,
 					finished: false,
 				}).then(refetchBlocksUsers);
@@ -204,9 +215,7 @@ export default function UserPage({ params }) {
 										<td scope="row" className="px-6 py-4">
 											<CheckBox
 												checked={block.forceOpen}
-												onChange={(checked) =>
-													updateForceOpen(block.id, block.infoId, checked)
-												}
+												onChange={(checked) => updateForceOpen(block, checked)}
 											/>
 										</td>
 										<td scope="row" className="px-6 py-4 whitespace-nowrap">
