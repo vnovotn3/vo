@@ -12,6 +12,23 @@ export default function UserLayout({ children }) {
 	const router = useRouter();
 	const pathname = usePathname();
 
+	const centerLinks = useMemo(
+		() => [
+			{
+				label: "Metody",
+				type: "simple",
+				onClick: () => router.push(`/user/blocks`),
+				isActive: pathname === "/user/blocks",
+			},
+			{
+				label: "Fitness metriky",
+				type: "simple",
+				onClick: () => router.push(`/user/fitness`),
+				isActive: pathname === "/user/fitness",
+			},
+		],
+		[router, pathname]
+	);
 	const rightLinks = useMemo(
 		() => [
 			{
@@ -34,7 +51,11 @@ export default function UserLayout({ children }) {
 	return (
 		<>
 			<div className="flex flex-1 flex-col min-h-full">
-				<NavBar homePath="/user" rightLinks={rightLinks} />
+				<NavBar
+					homePath="/user"
+					rightLinks={rightLinks}
+					centerLinks={centerLinks}
+				/>
 				<div className="flex flex-1">
 					<div className="flex flex-1 flex-col px-0 pt-0 lg:pt-6 pb-20 lg:px-8">
 						<div className="mx-auto flex max-w-7xl p-4 lg:px-8 w-full">

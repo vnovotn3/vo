@@ -1,7 +1,7 @@
 import "../../globals.css";
 
 export const metadata = {
-	title: "Výzkum Odolnosti | Fitness metriky",
+	title: "Výzkum Odolnosti | Můj účet",
 	description: "Výzkum Odolnosti",
 };
 
